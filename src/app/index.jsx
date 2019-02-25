@@ -1,5 +1,15 @@
 import React from 'react';
+import injectSheet from 'react-jss';
 
-const App = () => <div>¡HOLA LOLA!</div>;
+const styles = theme => ({
+  container: {
+    backgroundColor: theme.colors.primary,
+    display: 'flex',
+  }
+});
 
-export default App;
+const App = ({ classes }) => (
+  <div className={classes.container}>¡HOLA LOLA!</div>
+);
+
+export default injectSheet(styles)(App);

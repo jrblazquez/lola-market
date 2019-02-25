@@ -13,17 +13,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader",
-          options: {
-            modules: true,
-            localIdentName: '[hash:base64:5]',
-        }, }
-        ]
-      },
-      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
