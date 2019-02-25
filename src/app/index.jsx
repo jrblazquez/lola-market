@@ -1,5 +1,6 @@
 import React from 'react';
 import injectSheet from 'react-jss';
+import Aside from '../components/aside';
 
 const styles = theme => ({
   '@global': {
@@ -18,6 +19,10 @@ const styles = theme => ({
         backgroundColor: theme.palette.common.white,
       },
     },
+    ul: {
+      margin: 0,
+      padding: 0,
+    }
   },
   container: {
     backgroundColor: theme.palette.primary,
@@ -26,7 +31,9 @@ const styles = theme => ({
 });
 
 const App = ({ classes }) => (
-  <div className={classes.container}>¡HOLA LOLA!</div>
+  <div className={classes.container}>
+    <Aside />
+  </div>
 );
 
 export default injectSheet(styles)(App);

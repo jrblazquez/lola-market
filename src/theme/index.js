@@ -1,8 +1,9 @@
 const theme = {
   palette: {
-    primary: 'red',
+    primary: '#4FD053',
     background: {
       default: '#F5F5F5',
+      aside: '#FFFFFF',
     },
     common: {
       white: '#FFFFFF',
