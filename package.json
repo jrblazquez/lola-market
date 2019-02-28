@@ -23,10 +23,13 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "classnames": "^2.2.6",
     "jss-preset-default": "^10.0.0-alpha.7",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-jss": "^8.6.1",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
     "webpack": "^4.29.5"
   },
   "devDependencies": {

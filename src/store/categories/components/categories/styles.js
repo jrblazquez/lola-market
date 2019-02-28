@@ -7,15 +7,17 @@ const styles = theme => ({
     bottom: '0',
     display: 'flex',
     flexDirection: 'column',
+    left: props => props.isOpened ? '0': '-320px',
+    transition: 'all ease-out 200ms',
+    zIndex: 12,
   },
   header: {
     flex: '0 0 70px',
     backgroundColor: theme.palette.primary,
   },
-  sections: {
-    flexGrow: 1,
+  sections: {
     overflowY: 'auto',
-  },
+  }
 });
 
 export default styles;

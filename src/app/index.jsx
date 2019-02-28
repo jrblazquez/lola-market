@@ -1,38 +1,25 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import Aside from '../components/aside';
+import globalStyles from '../styles/globalStyles';
+import Categories from '../store/categories';
 
 const styles = theme => ({
-  '@global': {
-    html: {
-      WebkitFontSmoothing: 'antialiased',
-      MozOsxFontSmoothing: 'grayscale',
-      boxSizing: 'border-box',
-    },
-    '*, *::before, *::after': {
-      boxSizing: 'inherit',
-    },
-    body: {
-      margin: 0,
-      backgroundColor: theme.palette.background.default,
-      '@media print': {
-        backgroundColor: theme.palette.common.white,
-      },
-    },
-    ul: {
-      margin: 0,
-      padding: 0,
-    }
-  },
+  '@global': globalStyles(theme),
   container: {
-    backgroundColor: theme.palette.primary,
     display: 'flex',
+  },
+  prueba: {
+    zIndex: 10,
+    //backgroundColor: 'red',
+    width: '100%',
+    height: '100vh',
   }
 });
 
 const App = ({ classes }) => (
   <div className={classes.container}>
-    <Aside />
+    <Categories />
+    <div className={classes.prueba}>PRUEBA</div>
   </div>
 );
 
