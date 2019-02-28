@@ -4,13 +4,13 @@ import categories from '../../../../../servers/mocks/categories.json';
 const INITIAL_STATE = {
   isOpened: true,
   categories: categories.categories.map(category => ({
-    id: category.shortcut,
+    id: category.id,
     icon: category.icon,
     name: category.name,
     isSelected: false,
     isExpanded: false,
     sections: category.categories.map(category => ({
-      id: category.shortcut,
+      id: category.id,
       name: category.name,
       isSelected: false,
       isExpanded: false,
