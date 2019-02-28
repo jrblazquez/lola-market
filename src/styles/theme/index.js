@@ -9,6 +9,14 @@ const theme = {
     common: {
       white: '#FFFFFF',
     }
+  },
+  breakpoints: {
+    xxs: '@media (min-width: 360px)',
+    xs: '@media (min-width: 480px)',
+    sm: '@media (min-width: 720px)',
+    md: '@media (min-width: 960px)',
+    lg: '@media (min-width: 1280px)',
+    xl: '@media (min-width: 1920px)',
   }
 };
 

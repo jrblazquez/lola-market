@@ -2,10 +2,13 @@ import Categories from './components/categories';
 import { connect } from 'react-redux';
 import { actions } from './duck';
 
-const mapStateToProps = state => ({
-  isOpened: state.categories.isOpened,
-  categories: state.categories.categories,
-});
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    isOpened: state.categories.isOpened,
+    categories: state.categories.categories,
+  }
+};
 
 const mapDispacthToProps = dispatch => ({
   select: (id) => dispatch(actions.selectCategory(id)),

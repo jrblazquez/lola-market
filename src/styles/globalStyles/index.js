@@ -18,6 +18,12 @@ const globalStyles = theme => ({
   ul: {
     margin: 0,
     padding: 0,
+  },
+  li: {
+    listStyle: 'none',
+  },
+  p: {
+    margin: 0,
   }
 });
 

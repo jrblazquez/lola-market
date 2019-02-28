@@ -2,7 +2,7 @@ import * as TYPES from '../types';
 import categories from '../../../../../servers/mocks/categories.json';
 
 const INITIAL_STATE = {
-  isOpened: true,
+  isOpened: false,
   categories: categories.categories.map(category => ({
     id: category.id,
     icon: category.icon,
