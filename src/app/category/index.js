@@ -1,13 +1,17 @@
 import Category from './components/';
 import { connect } from 'react-redux';
-import { selectors } from '../../store/ui/market';
-import { selectors as categorySelector } from '../../store/ui/category';
+import { selectors, actions } from '../../store/ui/shop';
 
 const mapStateToProps = state => {
   return {
-    category: categorySelector.getCategory(state),
+    category: selectors.getCategory(state),
     items: selectors.getItems(state),
   }
 };
 
-export default connect(mapStateToProps)(Category);
+
+const mapDispacthToProps = dispatch => ({
+  openAside: () => dispatch(actions.openAside()),
+});
+
+export default connect(mapStateToProps, mapDispacthToProps)(Category);

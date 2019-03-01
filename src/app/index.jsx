@@ -1,8 +1,8 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 import globalStyles from '../styles/globalStyles';
+import Aside from './aside';
 import Category from './category';
-import Categories from '../store/categories';
 
 const styles = theme => ({
   '@global': globalStyles(theme),
@@ -20,7 +20,7 @@ const styles = theme => ({
 const App = ({ classes }) => {
   return (
     <div className={classes.container}>
-      <Categories />
+      <Aside />
       <Category />
     </div>
   )

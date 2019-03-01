@@ -1,10 +1,8 @@
 import { combineReducers, createStore } from 'redux';
-import category  from './category';
-import market  from './market';
+import shop  from './shop';
 
 const reducer = combineReducers({
-  category,
-  market,
+  shop,
 });
 
 export const configureStore = () => createStore(reducer);

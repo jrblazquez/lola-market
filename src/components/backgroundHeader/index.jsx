@@ -2,9 +2,12 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import styles from './styles';
 
-const BackgroundHeader = ({ classes, image, title }) => {
+const BackgroundHeader = ({ classes, image, title, onClick }) => {
   return (
-    <header className={classes.container}>
+    <header
+      className={classes.container}
+      onClick={onClick}
+    >
       <h1 className={classes.title}>
         { title }
       </h1>

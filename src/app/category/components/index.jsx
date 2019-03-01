@@ -5,12 +5,13 @@ import Centered from '../../../components/centered';
 import Subcategory from './subcategory';
 import styles from './styles';
 
-const Category = ({ classes, category, items }) => {
+const Category = ({ classes, category, items, openAside }) => {
   return (
     <>
       <Header 
         title={category.name}
         image={category.picture}
+        onClick={openAside}
       />
       <Centered id="Products" component="section">
         <article>
