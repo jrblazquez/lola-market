@@ -1,14 +1,7 @@
 import { Record } from 'immutable';
 
 const Model = Record({
-  id: 1,
-  shortcut: 'mercadona',
-  name: 'Mercadona',
-  picture: 'https:\/\/api.comprea.com\/bundles\/asset\/company\/ic_circled_mercadona.png',
-  icon: 'https:\/\/api.comprea.com\/bundles\/asset\/company\/ic_circled_mercadona.png',
-  description: 'Productos habituales en las grandes superficies.',
-  color: '0,122,56',
-  special: false,
+  id: 2,
 });
 
 const reducer = (state = Model(), action) => {

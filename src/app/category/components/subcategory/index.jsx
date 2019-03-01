@@ -1,10 +1,11 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import Icon from '../../../components/icon';
+import Icon from '../../../../components/icon';
 import Product from '../product';
 import styles from './styles';
 
-const SubCategory = ({ classes, title, icon }) => {
+const SubCategory = ({ classes, title, icon, items }) => {
+  console.log('render')
   return (
     <section>
       <header className={classes.header}>
@@ -15,12 +16,17 @@ const SubCategory = ({ classes, title, icon }) => {
         <a className={classes.link} href="#">Ver más</a>
       </header>
       <ul className={classes.products}>
-        <li className={classes.product}><Product /></li>
-        <li className={classes.product}><Product /></li>
-        <li className={classes.product}><Product /></li>
-        <li className={classes.product}><Product /></li>
-        <li className={classes.product}><Product /></li>
-        <li className={classes.product}><Product /></li>
+        {
+          Object.values(items).map(item => (
+            <li key={item.uuid} className={classes.product}>
+              <Product
+                name={item.name}
+                price={item.price}
+                image={item.pictures[0] ? item.pictures[0] : null}
+              />
+            </li>
+          ))
+        }
       </ul>    
     </section>
   );

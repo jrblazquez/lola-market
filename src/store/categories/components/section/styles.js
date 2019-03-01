@@ -58,7 +58,7 @@ const styles = theme => ({
   },
   sections: {
     maxHeight: 0,
-    transition: 'max-height ease-in-out 200ms', //TODO: CSSTranstionGroup to rescue
+    //transition: 'max-height ease-in-out 200ms', //TODO: CSSTranstionGroup to rescue
   },
   sectionExpanded: {
     maxHeight: '100vh',

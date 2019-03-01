@@ -5,6 +5,7 @@ const styles = theme => ({
     padding: '0.75rem',
     margin: '0.25rem',
     display: 'flex',
+    flex: 1,
     flexDirection: 'column',
     border: '1px solid #e2e2e2',
     cursor: 'pointer',
@@ -16,6 +17,7 @@ const styles = theme => ({
   name: {
     fontSize: '0.9rem',
     marginBottom: '1rem',
+    flexGrow: 1,
   },
   imageContainer: {
     height: '8rem',

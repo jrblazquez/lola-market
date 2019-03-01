@@ -1,11 +1,11 @@
 import { combineReducers, createStore } from 'redux';
-// import entitiesReducer  from './entities';
+import entitiesReducer  from './entities';
 import uiReducer  from './ui';
 import userReducer  from './user';
 import categoriesReducer  from './categories/duck';
 
 const rootReducer = combineReducers({
-  // entitites: entitiesReducer,
+  entities: entitiesReducer,
   ui: uiReducer,
   user: userReducer,
   

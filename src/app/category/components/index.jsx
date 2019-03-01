@@ -1,18 +1,20 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import Header from '../../components/backgroundHeader';
-import Centered from '../../components/centered';
+import Header from '../../../components/backgroundHeader';
+import Centered from '../../../components/centered';
 import Subcategory from './subcategory';
 import styles from './styles';
 
-const Category = ({ classes, image, title }) => {
+const Category = ({ classes, category, items }) => {
   return (
     <>
-      <Header />
+      <Header 
+        title={category.name}
+        image={category.picture}
+      />
       <Centered id="Products" component="section">
         <article>
-          <Subcategory />
-          <Subcategory />
+          <Subcategory items={items.toJS()}/>
         </article>
       </Centered>
     </>
@@ -20,8 +22,8 @@ const Category = ({ classes, image, title }) => {
 }
 
 Category.defaultProps = {
-  image: 'https://api.comprea.com/bundles/asset/category/bg_header_008.jpg?s=web',
-  title: 'Aceites, salsas y condimentos',
+  category: {},
+  items: [],
 }
 
 export default injectSheet(styles)(Category);

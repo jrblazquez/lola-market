@@ -28,6 +28,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   product: {
+    display: 'flex',
     flex: '0 0 100%',
     [theme.breakpoints.xxs]:{
       flex: '0 0 50%',

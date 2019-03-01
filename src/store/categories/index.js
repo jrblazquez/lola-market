@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { actions } from './duck';
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     isOpened: state.categories.isOpened,
     categories: state.categories.categories,
