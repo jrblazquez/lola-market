@@ -4,7 +4,7 @@ import { Map, List } from 'immutable';
 const API_URL =  'https://api.comprea.com';
 
 export default async ({ token, marketId, categoryId }) => {
-  const url = `${API_URL}/v6/company/featured?token=${token}&company_id=${marketId}`;
+  const url = `${API_URL}/v6/company/featured?token=${token}&company_id=${marketId}${ categoryId ? '&category_id='+categoryId : ''}`;
 
   return fetch(url, {
     method: 'GET',

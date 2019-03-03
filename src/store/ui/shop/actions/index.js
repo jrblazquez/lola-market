@@ -57,3 +57,10 @@ export const setMarket = id => ({
     id
   }
 });
+
+export const setCategory = id => ({
+  type: TYPES.SET_CATEGORY,
+  payload: {
+    id
+  }
+});

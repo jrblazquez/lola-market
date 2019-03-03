@@ -21,7 +21,13 @@ const reducer = (state = Model(), action) => {
       return state.set('categories', List());
     case TYPES.SET_MARKET:
       return state.set('market', action.payload.id)
-    
+    case TYPES.SET_CATEGORY:
+      return state
+        .set('category', action.payload.id)
+        .set('categories', List([action.payload.id]));
+
+
+        
     case TYPES.SELECT_CATEGORY:
       return state
         .set('category', action.payload.id)
@@ -34,6 +40,7 @@ const reducer = (state = Model(), action) => {
         return state
           .set('category', action.payload.categoryId)
           .set('categories', List([action.payload.categoryId]));
+    
     default:
     return state;
   }

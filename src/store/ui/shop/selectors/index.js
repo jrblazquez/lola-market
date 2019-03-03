@@ -26,16 +26,24 @@ export const getMarketsByPostalCode = createSelector(
 
 const getCategoryId = state => state.ui.shop.get('category');
 export const getCategoriesSelected = state => state.ui.shop.get('categories');
-const getCategoriesById = state => state.entities.categories.byId;
+export const getCategoriesById = state => state.entities.categories.byId;
 const getCategoriesByMarket = state => state.entities.categories.byMarket;
 
 const getCategories = createSelector(
   getMarketId,
   getCategoriesById,
   getCategoriesByMarket,
-  (marketId, categories, categoriesByMarket) => {
-    const categoriesId = categoriesByMarket.get(String(marketId)) || Map();
-    return categoriesId.map(categoryId => categories.get(categoryId));
+  getCategoryId,
+  (marketId, categories, categoriesByMarket, categoryId) => {
+    if(categoryId === null){
+      const categoriesId = categoriesByMarket.get(String(marketId)) || Map();
+      return categoriesId.map(categoryId => categories.get(categoryId));
+    }
+    else{
+      if(categories.get(categoryId).categories.length > 0)
+        return List(categories.get(categoryId).categories.map(category => categories.get(category.id)));
+      return List([categories.get(categoryId)]);
+    }
   }
 );
 
@@ -82,7 +90,6 @@ export const getFeaturedCategoriesWithItems = createSelector(
   getAllItemsIdByFeaturedCategories,
   (categories, items, itemsByFeaturedCategories) => {
     return categories.valueSeq().map(category => {
-      console.log(category, items, itemsByFeaturedCategories)
       const categoryItems = itemsByFeaturedCategories.get(category.id);
       return {
         id: category.id,

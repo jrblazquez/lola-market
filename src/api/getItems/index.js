@@ -19,13 +19,11 @@ export default async ({ token, marketId, categoryId }) => {
       return items.set(item.uuid, new Model(item));
     }, Map());
   
-    /*const byPostalcode = Map({
-      [postalcode]: List(markets.map(market => market.id)),
-    });*/
+    const byFeaturedCategories = Map().set(categoryId, List(items.map(item => item.uuid)));
 
     return {
       byId,
-      //byPostalcode,
+      byFeaturedCategories,
     };
   });
 }

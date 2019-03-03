@@ -1,12 +1,12 @@
 import { spawn, take } from 'redux-saga/effects'
 import * as TYPES from '../types'
-import { goMarket } from '../../ui/shop/sagas';
+import { goMarket, goMarketCategory, goMarketSubcategory } from '../../ui/shop/sagas';
 
 const routesMap = {
   [TYPES. GO_HOME]: goHome,
   [TYPES.GO_MARKET]: goMarket,
-  [TYPES.GO_MARKET_CATEGORY]: goHome,
-  [TYPES.GO_MARKET_CATEGORY_SUBCATEGORY]:goHome,
+  [TYPES.GO_MARKET_CATEGORY]: goMarketCategory,
+  [TYPES.GO_MARKET_CATEGORY_SUBCATEGORY]: goMarketSubcategory,
 };
 
 function* goHome () {

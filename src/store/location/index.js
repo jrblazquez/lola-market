@@ -3,6 +3,7 @@ import * as actions from './actions';
 import sagas from './sagas';
 import routes from './routes';
 import * as types from './types';
+import * as selectors from './selectors';
 
 const { reducer, middleware, enhancer, initialDispatch } = connectRoutes(
   routes,
@@ -11,5 +12,5 @@ const { reducer, middleware, enhancer, initialDispatch } = connectRoutes(
   },
 );
 
-export { actions, sagas, routes, middleware, enhancer, types, initialDispatch };
+export { actions, sagas, routes, middleware, enhancer, types, initialDispatch, selectors };
 export default reducer;

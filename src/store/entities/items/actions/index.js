@@ -20,10 +20,11 @@ export const getItemsFailed = error => ({
   error,
 });
 
-export const getFeaturedRequest = (marketId) => ({
+export const getFeaturedRequest = (marketId, categoryId) => ({
   type: TYPES.GET_FEATURED_REQUEST,
   payload: {
     marketId,
+    categoryId,
   }
 });
 

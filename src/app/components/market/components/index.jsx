@@ -5,7 +5,8 @@ import Centered from '../../../../components/centered';
 import Subcategory from './subcategory';
 import styles from './styles';
 
-const Category = ({ classes, categories, items, openAside, market }) => {
+const Category = ({ classes, categories, openAside, market }) => {
+  console.log(categories)
   return (
     <>
       <Header 

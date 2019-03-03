@@ -19,7 +19,7 @@ const styles = theme => ({
 const App = ({ classes, Component }) => {
   return (
     <div className={classes.container}>
-      <Aside />
+      {/*<Aside />*/}
       <Component />
     </div>
   )
