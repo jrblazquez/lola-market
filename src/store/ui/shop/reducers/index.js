@@ -2,10 +2,11 @@ import { Record, List } from 'immutable';
 import * as TYPES from '../types';
 
 const Model = Record({
+  postalcode: 28010,
   market: null,
   category: null,
   categories: List(),
-  isAsideOpened: true,
+  isAsideOpened: false,
 });
 
 const reducer = (state = Model(), action) => {
@@ -18,6 +19,8 @@ const reducer = (state = Model(), action) => {
       return state.set('categories', List([action.payload.id]));
     case TYPES.COLLAPSE_CATEGORY:
       return state.set('categories', List());
+    case TYPES.SET_MARKET:
+      return state.set('market', action.payload.id)
     
     case TYPES.SELECT_CATEGORY:
       return state

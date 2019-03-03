@@ -7,7 +7,6 @@ function* getCategories(action) {
   try {
     const categories = yield call(Api.getCategories, action.payload);
     yield put(actions.getCategoriesSucceeded(categories));
-    debugger
   } catch (e) {
     yield put(actions.getCategoriesFailed(e.message));
   }

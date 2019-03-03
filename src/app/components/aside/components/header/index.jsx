@@ -1,6 +1,6 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import Icon from '../../../../components/icon';
+import Icon from '../../../../../components/icon';
 import styles from './styles';
 
 const Header = ({ classes, market, postalcode, onClick }) => {

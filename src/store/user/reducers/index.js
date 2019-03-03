@@ -3,7 +3,6 @@ import * as TYPES from '../types';
 
 const Model = Record({
   token: null,
-  postalcode: 28010,
 });
 
 const reducer = (state = Model(), action) => {

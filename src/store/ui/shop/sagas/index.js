@@ -1,7 +1,7 @@
-import { call, put, takeEvery, select } from 'redux-saga/effects'
+import { call, put, takeEvery, select, take } from 'redux-saga/effects'
 import * as actions from '../actions';
 import { actions as categoriesActions } from '../../../entities/categories';
-import { actions as marketsActions } from '../../../entities/markets';
+import { actions as marketsActions, types as marketsTypes } from '../../../entities/markets';
 import { actions as itemsActions } from '../../../entities/items';
 import * as selectors from '../selectors';
 import * as Api from '../../../../api';
@@ -42,6 +42,21 @@ function* getItems(action) {
 function* sagas() {
   yield takeEvery(TYPES.CHANGE_POSTALCODE, changePostalCode);
   yield takeEvery(TYPES.SELECT_CATEGORY, getItems);
+}
+
+export function* goMarket(){
+  const postalcode = yield select(selectors.getPostalCode);
+  try {
+    yield put(marketsActions.getMarketsRequest(postalcode));
+    yield take(marketsTypes.GET_MARKETS_SUCCEEDED);
+    const markets = yield select(selectors.getMarketsByPostalCode);
+    const market = markets.find(market => market.shortcut === 'mercadona');
+    yield put(actions.setMarket(market.id));
+    yield put(categoriesActions.getCategoriesRequest(market.id));
+    yield put(itemsActions.getFeaturedRequest(market.id));
+  } catch (e) {
+    
+  }
 }
 
 export default sagas;

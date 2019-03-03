@@ -1,5 +1,3 @@
-import { white } from "ansi-colors";
-
 const styles = theme => ({
   container: {
   },
@@ -26,6 +24,7 @@ const styles = theme => ({
   products: {
     display: 'flex',
     flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   product: {
     display: 'flex',
@@ -37,13 +36,13 @@ const styles = theme => ({
       flex: '0 0 33%',
     },
     [theme.breakpoints.sm]:{
-      flex: '0 0 25%',
+      flex: '0 0 33%',
     },
     [theme.breakpoints.md]:{
-      flex: '0 0 20%',
+      flex: '0 0 16.6%',
     },
     [theme.breakpoints.lg]:{
-      flex: '0 0 20%',
+      flex: '0 0 16.6%',
     },
   },
 });

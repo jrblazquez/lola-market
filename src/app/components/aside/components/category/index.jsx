@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 import cN from 'classnames';
 import styles from './styles';
-import Icon from '../../../../components/icon';
-import ChevronUP from '../../../../components/svg/chevronUp';
-import Check from '../../../../components/svg/check';
+import Icon from '../../../../../components/icon';
+import ChevronUP from '../../../../../components/svg/chevronUp';
+import Check from '../../../../../components/svg/check';
 
 class Category extends PureComponent{
   render(){

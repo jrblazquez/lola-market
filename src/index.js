@@ -7,7 +7,7 @@ import preset from 'jss-preset-default';
 import { ThemeProvider } from 'react-jss';
 import theme from './styles/theme';
 import App from './app';
-import { configureStore } from './store'
+import configureStore from './store'
 
 const jss = createJss();
 jss.use(preset());

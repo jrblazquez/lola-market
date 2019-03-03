@@ -1,6 +1,6 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import Icon from '../../../../components/icon';
+import Icon from '../../../../../components/icon';
 import Product from '../product';
 import styles from './styles';
 
@@ -16,7 +16,7 @@ const SubCategory = ({ classes, title, icon, items }) => {
       </header>
       <ul className={classes.products}>
         {
-          Object.values(items).map(item => (
+          items.map(item => (
             <li key={item.uuid} className={classes.product}>
               <Product
                 name={item.name}

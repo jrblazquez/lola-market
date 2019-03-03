@@ -1,14 +1,26 @@
 import { createSelector } from 'reselect'
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
+
+export const getPostalCode = state => state.ui.shop.get('postalcode');
 
 export const getMarketId = state => state.ui.shop.get('market');
-const getMarkets = state => state.entities.markets.byId;
+export const getMarkets = state => state.entities.markets.byId;
 export const getMarket = createSelector(
   getMarketId,
   getMarkets,
   (id, markets) => {
     const market = markets.get(id);
     return market ? market : {}
+  },
+);
+
+const getAllMarketsByPostalCode = state => state.entities.markets.byPostalcode;
+export const getMarketsByPostalCode = createSelector(
+  getPostalCode,
+  getMarkets,
+  getAllMarketsByPostalCode,
+  (postalcode, markets, marketsByPostalcode) => {
+    return marketsByPostalcode.get(String(postalcode)).map(marketId => markets.get(marketId))
   },
 );
 
@@ -59,6 +71,26 @@ export const getCategory = createSelector(
   (id, categories) => {
     const category = categories.get(id);
     return category ? category: {}
+  },
+);
+
+export const getAllItemsById = state => state.entities.items.byId;
+export const getAllItemsIdByFeaturedCategories = state => state.entities.items.byFeaturedCategories;
+export const getFeaturedCategoriesWithItems = createSelector(
+  getCategories,
+  getAllItemsById,
+  getAllItemsIdByFeaturedCategories,
+  (categories, items, itemsByFeaturedCategories) => {
+    return categories.valueSeq().map(category => {
+      console.log(category, items, itemsByFeaturedCategories)
+      const categoryItems = itemsByFeaturedCategories.get(category.id);
+      return {
+        id: category.id,
+        name: category.name,
+        icon: category.icon,
+        items: categoryItems ? categoryItems.map(item => items.get(item)) : List(),
+      }
+    });
   },
 );
 

@@ -37,7 +37,6 @@ export const changePostalCode = (postalcode) => ({
   }
 });
 
-
 export const changeMarket = (marketId) => ({
   type: TYPES.CHANGE_MARKET,
   payload: {
@@ -49,5 +48,12 @@ export const changeCategory = (categoryId) => ({
   type: TYPES.CHANGE_CATEGORY,
   payload: {
     categoryId
+  }
+});
+
+export const setMarket = id => ({
+  type: TYPES.SET_MARKET,
+  payload: {
+    id
   }
 });

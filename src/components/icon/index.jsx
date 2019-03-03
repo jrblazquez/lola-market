@@ -2,9 +2,9 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import styles from './styles';
 
-const Icon = ({ classes, icon }) => {
+const Icon = ({ classes, icon, className }) => {
   return (
-    <span className={classes.container} >
+    <span className={`${ classes.container } ${ className}`}>
       <div
         style={{ backgroundImage: icon && `url(${icon})` }}
         className={classes.icon}

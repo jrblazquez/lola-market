@@ -1,8 +1,9 @@
 const styles = theme => ({
   container: {
-    margin: '0 1rem',
+    padding: '0 1rem',
     maxWidth: '1000px',
     alignSelf: 'center',
+    width: '100%',
   },
   title: {
     color: 'white',

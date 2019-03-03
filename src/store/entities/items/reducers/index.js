@@ -19,7 +19,7 @@ export const Model = Record({
 
 const getInitialState = Record({
   byId: new Map(),
-  //byMarket: new Map(),
+  byFeaturedCategories: new Map(),
 });
 
 const reducer = (state = getInitialState(), action) => {
@@ -28,6 +28,10 @@ const reducer = (state = getInitialState(), action) => {
       return state
         .set('byId', action.payload.items.byId);
         //.set('byMarket', action.payload.categories.byMarket);
+    case TYPES.GET_FEATURED_SUCCEEDED:
+        return state
+          .set('byId', action.payload.items.byId)
+          .set('byFeaturedCategories', action.payload.items.byFeaturedCategories);
     default:
       return state;
   }

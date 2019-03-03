@@ -1,47 +1,32 @@
-import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
+import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware, {} from 'redux-saga';
-import tokenMiddleware from './utils/tokenMiddleware';
-import { all, put } from 'redux-saga/effects';
 import { createLogger } from 'redux-logger';
+import tokenMiddleware from './utils/tokenMiddleware';
+import routesReducer, { middleware as routesMiddleware, enhancer, initialDispatch } from './location';
+import rootSagas from './sagas';
 import entitiesReducer  from './entities';
-import uiReducer  from './ui';
-import userReducer, { actions, sagas as userSagas }  from './user';
-import { sagas as marketsSagas }  from './entities/markets';
-import { sagas as shopSagas }  from './ui/shop';
+import uiReducer from './ui';
+import userReducer from './user';
 
-function* initial(){
-  yield put(actions.getTokenRequest());
-}
-
-function* rootSagas(){
-  yield all([
-    userSagas(),
-    marketsSagas(),
-    shopSagas(),
-    initial(),
-  ])
-}
-
-const rootReducer = combineReducers({
-  entities: entitiesReducer,
-  ui: uiReducer,
-  user: userReducer,
-});
-
-export const configureStore = () => {
+const configureStore = () => {
   const loggerMiddleware = createLogger({});
   const sagaMiddleware = createSagaMiddleware();
 
-  const middlewares = [sagaMiddleware, loggerMiddleware, tokenMiddleware];
+  const rootReducer = combineReducers({
+    entities: entitiesReducer,
+    ui: uiReducer,
+    user: userReducer,
+    location: routesReducer,
+  });
 
+  const middlewares = [sagaMiddleware, routesMiddleware, tokenMiddleware, loggerMiddleware ];
   const store = createStore(
     rootReducer,
-    compose(applyMiddleware(...middlewares)),
+    compose(enhancer, applyMiddleware(...middlewares)),
   );
-
-  sagaMiddleware.run(rootSagas);
+  sagaMiddleware.run(rootSagas, initialDispatch);
 
   return store;
 }
 
-export default rootReducer;
+export default configureStore;

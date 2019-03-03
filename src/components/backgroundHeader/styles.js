@@ -9,6 +9,7 @@ const styles = theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     display: 'flex',
+    flexDirection: 'column',
     height: '7rem',
     justifyContent: 'center',
     position: 'relative',
@@ -20,12 +21,15 @@ const styles = theme => ({
     color: 'white',
     fontSize: '1.5rem',
     lineHeight: '1.2',
-    margin: '1rem',
+    margin: '0rem',
     textAlign: 'center',
     [theme.breakpoints.lg]: {
       fontSize: '2rem',
     },
   },
+  icon: {
+    padding: 0,
+  }
 });
 
 export default styles;
