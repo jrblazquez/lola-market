@@ -2,10 +2,10 @@ import { Record, List } from 'immutable';
 import * as TYPES from '../types';
 
 const Model = Record({
-  market: 4,
-  category: 16,
+  market: null,
+  category: null,
   categories: List(),
-  isAsideOpened: false,
+  isAsideOpened: true,
 });
 
 const reducer = (state = Model(), action) => {
@@ -15,14 +15,22 @@ const reducer = (state = Model(), action) => {
     case TYPES.OPEN_ASIDE:
       return state.set('isAsideOpened', true);
     case TYPES.EXPAND_CATEGORY:
-      console.log(state)
       return state.set('categories', List([action.payload.id]));
     case TYPES.COLLAPSE_CATEGORY:
       return state.set('categories', List());
+    
     case TYPES.SELECT_CATEGORY:
       return state
         .set('category', action.payload.id)
         .set('categories', List(action.payload.parents));
+    
+    case TYPES.CHANGE_MARKET:
+        return state
+          .set('market', action.payload.marketId);
+    case TYPES.CHANGE_CATEGORY:
+        return state
+          .set('category', action.payload.categoryId)
+          .set('categories', List([action.payload.categoryId]));
     default:
     return state;
   }

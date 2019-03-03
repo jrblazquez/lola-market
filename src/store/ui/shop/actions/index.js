@@ -29,3 +29,25 @@ export const selectCategory = (id, parents) => ({
     parents,
   }
 });
+
+export const changePostalCode = (postalcode) => ({
+  type: TYPES.CHANGE_POSTALCODE,
+  payload: {
+    postalcode
+  }
+});
+
+
+export const changeMarket = (marketId) => ({
+  type: TYPES.CHANGE_MARKET,
+  payload: {
+    marketId
+  }
+});
+
+export const changeCategory = (categoryId) => ({
+  type: TYPES.CHANGE_CATEGORY,
+  payload: {
+    categoryId
+  }
+});

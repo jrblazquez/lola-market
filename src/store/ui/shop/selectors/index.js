@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect'
+import { Map } from 'immutable';
 
-const getMarketId = state => state.ui.shop.get('market');
+export const getMarketId = state => state.ui.shop.get('market');
 const getMarkets = state => state.entities.markets.byId;
-
 export const getMarket = createSelector(
   getMarketId,
   getMarkets,
@@ -14,7 +14,19 @@ export const getMarket = createSelector(
 
 const getCategoryId = state => state.ui.shop.get('category');
 export const getCategoriesSelected = state => state.ui.shop.get('categories');
-export const getCategories = state => state.entities.categories;
+const getCategoriesById = state => state.entities.categories.byId;
+const getCategoriesByMarket = state => state.entities.categories.byMarket;
+
+const getCategories = createSelector(
+  getMarketId,
+  getCategoriesById,
+  getCategoriesByMarket,
+  (marketId, categories, categoriesByMarket) => {
+    const categoriesId = categoriesByMarket.get(String(marketId)) || Map();
+    return categoriesId.map(categoryId => categories.get(categoryId));
+  }
+);
+
 
 const toCategory = (category, categorySelected, categoriesSelected, parents = []) => {
   const hasSubcategories = category.categories.length > 0;
@@ -36,16 +48,18 @@ export const getCategoriesAside = createSelector(
   getCategories,
   getCategoryId,
   getCategoriesSelected,
-  (categories, categorySelected, categoriesSelected) => categories.valueSeq().map(category => toCategory(category, categorySelected, categoriesSelected)),
+  (categories, categorySelected, categoriesSelected) => {
+    return categories.valueSeq().map(category => toCategory(category, categorySelected, categoriesSelected))
+  },
 );
 
 export const getCategory = createSelector(
   getCategoryId,
-  getCategories,
+  getCategoriesById,
   (id, categories) => {
     const category = categories.get(id);
     return category ? category: {}
   },
 );
 
-export const getItems = state => state.entities.items;
+export const getItems = state => state.entities.items.byId;

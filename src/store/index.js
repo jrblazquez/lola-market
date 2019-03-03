@@ -6,7 +6,8 @@ import { createLogger } from 'redux-logger';
 import entitiesReducer  from './entities';
 import uiReducer  from './ui';
 import userReducer, { actions, sagas as userSagas }  from './user';
-import { sagas as marketsSagas }  from './entities/markets'
+import { sagas as marketsSagas }  from './entities/markets';
+import { sagas as shopSagas }  from './ui/shop';
 
 function* initial(){
   yield put(actions.getTokenRequest());
@@ -16,6 +17,7 @@ function* rootSagas(){
   yield all([
     userSagas(),
     marketsSagas(),
+    shopSagas(),
     initial(),
   ])
 }

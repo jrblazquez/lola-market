@@ -1,7 +1,7 @@
 import { Record, Map } from 'immutable';
-import mock from '../../../../../servers/mocks/categories.json';
+import * as TYPES from '../types';
 
-const Model = Record({
+export const Model = Record({
   id: 16,
   shortcut: "frutas-y-verduras",
   name: "Frutas y verduras",
@@ -10,17 +10,19 @@ const Model = Record({
   categories: Map(),
 });
 
-const getCategories = categories => categories.reduce((categories, category) => {
-  return categories.set(category.id, Model(category));
-}, Map());
+const getInitialState = Record({
+  byId: new Map(),
+  byMarket: new Map(),
+});
 
-// SAGAS TO RESCUE
-const getInitialState = categories => getCategories(categories);
-
-const reducer = (state = getInitialState(mock.categories), action) => {
+const reducer = (state = getInitialState(), action) => {
   switch(action.type){
+    case TYPES.GET_CATEGORIES_SUCCEEDED:
+      return state
+        .set('byId', action.payload.categories.byId)
+        .set('byMarket', action.payload.categories.byMarket);
     default:
-    return state;
+      return state;
   }
 }
 

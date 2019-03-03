@@ -1,7 +1,7 @@
 import { Record, Map } from 'immutable';
-import mock from '../../../../../servers/mocks/items_set_1.json';
+import * as TYPES from '../types';
 
-const Model = Record({
+export const Model = Record({
   uuid: 'R7wj29PHñ5',
   shortcut: 'aceite-oliva-sabor-suave-tapon-rojo',
   name: 'Aceite oliva sabor suave tapón rojo',
@@ -17,19 +17,19 @@ const Model = Record({
   max_price: 10.84,
 });
 
-// SAGAS TO RESCUE
-const getInitialState = () => {
-  const items = mock.items.reduce((items, item) => {
-    items[item.uuid] = Model(item);
-    return items;
-  }, {})
-  return Map(items);
-}
+const getInitialState = Record({
+  byId: new Map(),
+  //byMarket: new Map(),
+});
 
 const reducer = (state = getInitialState(), action) => {
   switch(action.type){
+    case TYPES.GET_ITEMS_SUCCEEDED:
+      return state
+        .set('byId', action.payload.items.byId);
+        //.set('byMarket', action.payload.categories.byMarket);
     default:
-    return state;
+      return state;
   }
 }
 
