@@ -24,6 +24,9 @@ const globalStyles = theme => ({
   },
   p: {
     margin: 0,
+  },
+  button: {
+    cursor: 'pointer',
   }
 });
 

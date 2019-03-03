@@ -2,8 +2,7 @@ import { Record, List } from 'immutable';
 import * as TYPES from '../types';
 
 const Model = Record({
-  postalcode: 28010,
-  market: 1,
+  market: 4,
   category: 16,
   categories: List(),
   isAsideOpened: false,

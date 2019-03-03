@@ -1,10 +1,12 @@
-import 'regenerator-runtime/runtime';
-import { combineReducers, createStore, applyMiddleware} from 'redux';
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware, {} from 'redux-saga';
+import tokenMiddleware from './utils/tokenMiddleware';
 import { all, put } from 'redux-saga/effects';
+import { createLogger } from 'redux-logger';
 import entitiesReducer  from './entities';
 import uiReducer  from './ui';
 import userReducer, { actions, sagas as userSagas }  from './user';
+import { sagas as marketsSagas }  from './entities/markets'
 
 function* initial(){
   yield put(actions.getTokenRequest());
@@ -13,6 +15,7 @@ function* initial(){
 function* rootSagas(){
   yield all([
     userSagas(),
+    marketsSagas(),
     initial(),
   ])
 }
@@ -24,11 +27,14 @@ const rootReducer = combineReducers({
 });
 
 export const configureStore = () => {
+  const loggerMiddleware = createLogger({});
   const sagaMiddleware = createSagaMiddleware();
+
+  const middlewares = [sagaMiddleware, loggerMiddleware, tokenMiddleware];
 
   const store = createStore(
     rootReducer,
-    applyMiddleware(sagaMiddleware),
+    compose(applyMiddleware(...middlewares)),
   );
 
   sagaMiddleware.run(rootSagas);

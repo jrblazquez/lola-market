@@ -1,7 +1,7 @@
 import { Record, Map } from 'immutable';
-import postalcodes from '../../../../../servers/mocks/postalcode.json';
+import * as TYPES from '../types';
 
-const Model = Record({
+export const Model = Record({
   id: 1,
   shortcut: 'mercadona',
   name: 'Mercadona',
@@ -9,22 +9,21 @@ const Model = Record({
   icon: 'https:\/\/api.comprea.com\/bundles\/asset\/company\/ic_circled_mercadona.png',
   description: 'Productos habituales en las grandes superficies.',
   color: '0,122,56',
-  special: false,
 });
 
-// SAGAS TO RESCUE
-const getInitialState = () => {
-  const markets = postalcodes.markets.reduce((markets, market) => {
-    markets[market.id] = Model(market);
-    return markets;
-  }, {})
-  return Map(markets);
-}
+const getInitialState = Record({
+  byId: new Map(),
+  byPostalcode: new Map(),
+});
 
 const reducer = (state = getInitialState(), action) => {
   switch(action.type){
+    case TYPES.GET_MARKETS_SUCCEEDED:
+      return state
+        .set('byId', action.payload.markets.byId)
+        .set('byPostalcode', action.payload.markets.byPostalcode);
     default:
-    return state;
+      return state;
   }
 }
 

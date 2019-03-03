@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect'
 
 const getMarketId = state => state.ui.shop.get('market');
-const getMarkets = state => state.entities.markets;
+const getMarkets = state => state.entities.markets.byId;
 
 export const getMarket = createSelector(
   getMarketId,
   getMarkets,
   (id, markets) => {
-    const market = markets.get(String(id));
+    const market = markets.get(id);
     return market ? market : {}
   },
 );

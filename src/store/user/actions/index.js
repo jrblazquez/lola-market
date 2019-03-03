@@ -12,7 +12,7 @@ export const getTokenSucceeded = token => ({
 });
 
 export const getTokenFailed = error => ({
-  type: TYPES.GET_TOKEN_SUCCEEDED,
+  type: TYPES.GET_TOKEN_FAILED,
   error,
 });
 

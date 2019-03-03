@@ -5,7 +5,7 @@ import Header from './header';
 import Categories from './categories';
 import styles from './styles';
 
-const Aside = ({ classes, isOpened, closeAside, market, categories, expand, collapse, select, categoriesSelected}) => {
+const Aside = ({ classes, isOpened, closeAside, market, categories, expand, collapse, select, categoriesSelected, postalcode }) => {
   return (
     <>
       <Overlay
@@ -13,7 +13,10 @@ const Aside = ({ classes, isOpened, closeAside, market, categories, expand, coll
         onClick={closeAside}
       />
       <nav className={classes.container}>
-        <Header market={market} />
+        <Header
+          market={market}
+          postalcode={postalcode}
+        />
         <Categories
           className={classes.categories}
           categories={categories}
