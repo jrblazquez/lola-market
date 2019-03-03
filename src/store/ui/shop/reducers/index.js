@@ -2,10 +2,11 @@ import { Record, List } from 'immutable';
 import * as TYPES from '../types';
 
 const Model = Record({
+  postalcode: 28010,
   market: 1,
   category: 16,
   categories: List(),
-  isAsideOpened: true,
+  isAsideOpened: false,
 });
 
 const reducer = (state = Model(), action) => {
