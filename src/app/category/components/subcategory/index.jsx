@@ -5,7 +5,6 @@ import Product from '../product';
 import styles from './styles';
 
 const SubCategory = ({ classes, title, icon, items }) => {
-  console.log('render')
   return (
     <section>
       <header className={classes.header}>

@@ -11,7 +11,7 @@ const styles = theme => ({
     transition: 'all ease-out 200ms',
     zIndex: 12,
   },
-  sections: {
+  categories: {
     overflowY: 'auto',
   }
 });

@@ -1,6 +1,7 @@
 const styles = theme => ({
   container: {
     cursor: 'pointer',
+    backgroundColor: props => props.isSelected ? '#f7f7f7' : '',
   },
   section: {
     display: 'flex',

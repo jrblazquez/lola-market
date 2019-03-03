@@ -1,5 +1,5 @@
 const styles = theme => ({
-  sections: {
+  categories: {
     flexGrow: 1,
     overflowY: 'hidden',
   },

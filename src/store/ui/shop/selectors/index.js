@@ -13,13 +13,37 @@ export const getMarket = createSelector(
 );
 
 const getCategoryId = state => state.ui.shop.get('category');
-const getCategories = state => state.entities.categories;
+export const getCategoriesSelected = state => state.ui.shop.get('categories');
+export const getCategories = state => state.entities.categories;
+
+const toCategory = (category, categorySelected, categoriesSelected, parents = []) => {
+  const hasSubcategories = category.categories.length > 0;
+  const isSelected = categoriesSelected.indexOf(category.id) !== -1 || (category.id === categorySelected && !hasSubcategories);
+  return {
+    id: category.id,
+    name: category.name,
+    icon: category.icon,
+    isSelected,
+    hasSubcategories,
+    parents: parents,
+    categories: isSelected ?
+      category.categories.map(subcategory => toCategory(subcategory, categorySelected, categoriesSelected, parents.concat([category.id])))
+      : null,
+  };
+}
+
+export const getCategoriesAside = createSelector(
+  getCategories,
+  getCategoryId,
+  getCategoriesSelected,
+  (categories, categorySelected, categoriesSelected) => categories.valueSeq().map(category => toCategory(category, categorySelected, categoriesSelected)),
+);
 
 export const getCategory = createSelector(
   getCategoryId,
   getCategories,
   (id, categories) => {
-    const category = categories.get(String(id));
+    const category = categories.get(id);
     return category ? category: {}
   },
 );

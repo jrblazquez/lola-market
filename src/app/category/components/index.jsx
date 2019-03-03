@@ -6,6 +6,7 @@ import Subcategory from './subcategory';
 import styles from './styles';
 
 const Category = ({ classes, category, items, openAside }) => {
+  console.log(category)
   return (
     <>
       <Header 

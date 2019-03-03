@@ -2,9 +2,10 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import Overlay from '../../../components/overlay';
 import Header from './header';
+import Categories from './categories';
 import styles from './styles';
 
-const Aside = ({ classes, isOpened, closeAside, market }) => {
+const Aside = ({ classes, isOpened, closeAside, market, categories, expand, collapse, select, categoriesSelected}) => {
   return (
     <>
       <Overlay
@@ -13,6 +14,14 @@ const Aside = ({ classes, isOpened, closeAside, market }) => {
       />
       <nav className={classes.container}>
         <Header market={market} />
+        <Categories
+          className={classes.categories}
+          categories={categories}
+          categoriesSelected={categoriesSelected}
+          expand={expand}
+          collapse={collapse}
+          select={select}
+        />
       </nav>
     </>
   )
