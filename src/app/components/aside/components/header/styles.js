@@ -1,9 +1,12 @@
 const styles = theme => ({
   container: {
-    flex: '0 0 70px',
+    flex: '0 0 4rem',
     backgroundColor: theme.palette.primary,
     display: 'flex',
     alignItems: 'center',
+    [theme.breakpoints.md]: {
+      flex: '0 0 5rem',
+    },
   },
   info: {
     padding: '12px 0',

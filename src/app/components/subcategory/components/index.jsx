@@ -11,7 +11,6 @@ const Category = ({ classes, market, category, subcategory, openAside, itemsByCa
       <Header
         market={market}
         category={category}
-        onClick={openAside}
         title={subcategory.name}
         image={subcategory.picture}
       />

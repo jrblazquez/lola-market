@@ -2,6 +2,7 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import globalStyles from '../../styles/globalStyles';
 import Aside from './aside';
+import Header from './header';
 
 const styles = theme => ({
   '@global': globalStyles(theme),
@@ -20,6 +21,7 @@ const styles = theme => ({
 const App = ({ classes, Component }) => {
   return (
     <div className={classes.container}>
+      <Header />
       <Aside />
       <Component />
     </div>

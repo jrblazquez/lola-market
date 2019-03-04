@@ -7,15 +7,19 @@ const styles = theme => ({
     backgroundSize: 'cover',
     display: 'flex',
     flexDirection: 'column',
-    height: '8rem',
+    height: '12rem',
     justifyContent: 'center',
     position: 'relative',
     [theme.breakpoints.md]: {
-      height: '12rem',
+      height: '17rem',
     },
     transition: 'all ease 250ms',
     '&>*':{
       zIndex: 4,
+      marginTop: '4rem',
+      [theme.breakpoints.md]: {
+        marginTop: '5rem',
+      },
     },
     '&:after': {
       content: '""',
@@ -25,7 +29,7 @@ const styles = theme => ({
       width: '100%',
       height: '100%',
       display: 'block',
-      background: 'linear-gradient(-180deg,rgba(0,0,0,0) 0,rgba(0,0,0,.6) 80%)',
+      background: 'linear-gradient(-180deg,rgba(0,0,0,0) 0,rgba(0,0,0,.5) 80%)',
       zIndex: 3,
     },
   },
