@@ -37,27 +37,27 @@ function* selectMarket(){
   return marketID
 }
 
-function* getCategoryID(categoryName){
+function* getCategoryID(categoryName, parentID){
   const categories = yield select(selectors.getAllCategoriesById);
-  const category = categories.find(category => category.shortcut === categoryName);
+  const category = categories.find(category => parentID === category.parentID && category.shortcut === categoryName);
   return category.id;
 }
 
-function* selectCategory(){
+function* selectCategory(marketID){
   const categoryName = yield select(locationSelectors.getCategoryName);
 
   //SET THE CURRENT CATEGORY
-  const categoryID = yield call(getCategoryID, categoryName);
+  const categoryID = yield call(getCategoryID, categoryName, marketID);
   yield put(actions.setCategory(categoryID));
 
   return categoryID
 }
 
-function* selectSubcategory(){
+function* selectSubcategory(categoryID){
   const subcategoryName = yield select(locationSelectors.getSubCategoryName);
 
   //SET THE CURRENT SUBCATEGORY
-  const subcategoryID = yield call(getCategoryID, subcategoryName);
+  const subcategoryID = yield call(getCategoryID, subcategoryName, categoryID);
   yield put(actions.setSubcategory(subcategoryID));
 
   return subcategoryID
@@ -71,15 +71,15 @@ export function* goMarket(){
 
 export function* goMarketCategory(){
   const marketID = yield call(selectMarket);
-  const categoryID = yield call(selectCategory);
+  const categoryID = yield call(selectCategory, marketID);
   yield put(itemsActions.getFeaturedRequest(marketID, categoryID));
   yield put(actions.closeAside());
 }
 
 export function* goMarketSubcategory(){
   const marketID = yield call(selectMarket);
-  const categoryID = yield call(selectCategory);
-  const subcategoryID = yield call(selectSubcategory);
+  const categoryID = yield call(selectCategory, marketID);
+  const subcategoryID = yield call(selectSubcategory, categoryID);
 
   const items = yield select(selectors.getAllItemsIdByFeaturedCategories);
   if(!items.get(subcategoryID)){

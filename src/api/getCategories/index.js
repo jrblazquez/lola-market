@@ -17,10 +17,15 @@ export default async ({ token, marketId }) => {
     
     const byId = categories
       .reduce((categories, category) => {
-        const subcategories = category.categories.reduce((categories, category) => categories.set(category.id, new Model(category)), Map());
+        const subcategories = category.categories.reduce((categories, subcategory) => categories.set(subcategory.id, new Model({
+          ...subcategory,
+          parentID: category.id,
+        })), Map());
+
         return categories
           .set(category.id, new Model({
             ...category,
+            parentID: marketId,
             categories: List(category.categories.map(category=>category.id)),
           }))
           .merge(subcategories);

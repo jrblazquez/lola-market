@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect'
-import { Map, List } from 'immutable';
-import { goMarketCategorySubcategory } from '../../../location/actions';
+import { List } from 'immutable';
 
 export const getAllMarketsById = state => state.entities.markets.byId;
 export const getAllMarketsByPostalCode = state => state.entities.markets.byPostalcode;

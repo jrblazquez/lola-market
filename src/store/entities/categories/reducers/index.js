@@ -8,6 +8,7 @@ export const Model = Record({
   picture: "https:\/\/api.comprea.com\/bundles\/asset\/category\/bg_header_003.jpg",
   icon: "https:\/\/api.comprea.com\/bundles\/asset\/category\/ic_category_018.png",
   categories: Map(),
+  parentID: null,
 });
 
 const getInitialState = Record({
