@@ -4,12 +4,12 @@ import styles from './styles';
 
 const Icon = ({ classes, icon, className }) => {
   return (
-    <span className={`${ classes.container } ${ className}`}>
+    <div className={`${ classes.container } ${ className}`}>
       <div
         style={{ backgroundImage: icon && `url(${icon})` }}
         className={classes.icon}
       />
-    </span>
+    </div>
   );
 }
 

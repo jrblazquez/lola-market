@@ -1,34 +1,20 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import Header from '../../../../components/backgroundHeader';
+import Header from '../../../../components/marketHeader';
 import Centered from '../../../../components/centered';
 import Subcategory from '../../../../components/subcategory';
-import Icon from '../../../../components/icon';
 import styles from './styles';
 
 const Category = ({ classes, market, category, subcategory, openAside, itemsByCategories }) => {
   return (
     <>
-      <Header 
-        image={subcategory.picture}
+      <Header
+        market={market}
+        category={category}
         onClick={openAside}
-      >
-        <nav className={classes.headerIcons}>
-          <Icon
-            size="large"
-            icon={market.icon}
-          />
-          <hr className={classes.headersIconsSeparation} />
-          <Icon
-            size="large"
-            icon={category.icon}
-          />
-        </nav>
-        <h1 className={classes.title}>
-          { subcategory.name }
-        </h1>
-      </Header>
-
+        title={subcategory.name}
+        image={subcategory.picture}
+      />
       <Centered
         id="Products"
         component="section"

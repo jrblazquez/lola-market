@@ -27,7 +27,7 @@ const styles = theme => ({
       display: 'block',
       background: 'linear-gradient(-180deg,rgba(0,0,0,0) 0,rgba(0,0,0,.6) 80%)',
       zIndex: 3,
-    }
+    },
   },
 });
 

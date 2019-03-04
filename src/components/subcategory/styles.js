@@ -4,14 +4,18 @@ const styles = theme => ({
   header: {
     display: 'flex',
     alignItems: 'center',
-    margin: '1rem 0.25rem',
+    margin: '0 0.25rem 1rem 0.25rem',
+  },
+  icon:{
+    padding: '0 0.5rem 0 0',
   },
   title: {
     color: theme.palette.primary,
-    flexGrow: 1,
+    flex: 1,
     display: 'flex',
     alignItems: 'center',
     margin: 0,
+    lineHeight: 1.2,
   },
   link: {
     backgroundColor: theme.palette.primary,
@@ -24,6 +28,9 @@ const styles = theme => ({
   products: {
     display: 'flex',
     flexWrap: 'wrap',
+    [theme.breakpoints.sm]:{
+      marginBottom: '1rem',
+    },
   },
   product: {
     display: 'flex',

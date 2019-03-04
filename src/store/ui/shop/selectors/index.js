@@ -66,6 +66,7 @@ export const getItemsOfMarket = createSelector(
         id: category.id,
         name: category.name,
         icon: category.icon,
+        shortcut: category.shortcut,
         items: categoryItems ? categoryItems.map(item => items.get(item)) : List(),
       }
     });
@@ -86,6 +87,7 @@ export const getItemsOfCategory = createSelector(
         id: category.id,
         name: category.name,
         icon: category.icon,
+        shortcut: category.shortcut,
         items: categoryItems ? categoryItems.map(item => items.get(item)) : List(),
       }
     });
@@ -119,6 +121,7 @@ export const getCategoriesBySelectedMarket = createSelector(
         id: category.id,
         name: category.name,
         icon: category.icon,
+        shortcut: category.shortcut,
         categories: category.categories.map(subcategoryID => {
           const subcategory = categories.get(subcategoryID);
           return {

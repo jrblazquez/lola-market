@@ -1,46 +1,39 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import Header from '../../../../components/backgroundHeader';
 import Centered from '../../../../components/centered';
 import Subcategory from '../../../../components/subcategory';
-import Icon from '../../../../components/icon';
+import Header from '../../../../components/marketHeader';
+import { actions } from '../../../../store/location';
 import styles from './styles';
 
 const Category = ({ classes, market, category, openAside, itemsByCategories }) => {
   return (
     <>
-      <Header 
-        image={category.picture}
+      <Header
+        market={market}
+        category={category}
         onClick={openAside}
-      >
-        <nav className={classes.headerIcons}>
-          <Icon
-            size="large"
-            icon={market.icon}
-          />
-          <hr className={classes.headersIconsSeparation} />
-          <Icon
-            size="large"
-            icon={category.icon}
-          />
-        </nav>
-        <h1 className={classes.title}>
-          { category.name }
-        </h1>
-      </Header>
+        title={category.name}
+        image={category.picture}
+      />
 
       <Centered
         id="Products"
         component="section"
       >
         { 
-          itemsByCategories.map(category => {
+          itemsByCategories.map(subcategory => {
             return (
               <article>
                 <Subcategory
-                  title={category.name}
+                  title={subcategory.name}
                   showHeader={itemsByCategories.size > 1}
-                  items={category.items}
+                  items={subcategory.items}
+                  link={actions.goMarketCategorySubcategory({
+                    marketName: market.shortcut,
+                    categoryName: category.shortcut,
+                    subcategoryName: subcategory.shortcut,
+                  })}
                 />
               </article>
             )

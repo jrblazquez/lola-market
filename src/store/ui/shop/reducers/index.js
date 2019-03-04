@@ -23,9 +23,14 @@ const reducer = (state = Model(), action) => {
     case TYPES.COLLAPSE_CATEGORY:
       return state.set('categoryExpanded', null);
     case TYPES.SET_MARKET:
-      return state.set('market', action.payload.id);
+      return state
+        .set('market', action.payload.id)
+        .set('category', null)
+        .set('subcategory', null);
     case TYPES.SET_CATEGORY:
-      return state.set('category', action.payload.id);
+      return state
+        .set('category', action.payload.id)
+        .set('subcategory', null);
     case TYPES.SET_SUBCATEGORY:
       return state.set('subcategory', action.payload.id);
     default:

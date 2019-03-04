@@ -1,20 +1,28 @@
 import React from 'react';
 import injectSheet from 'react-jss';
+import Link from 'redux-first-router-link';
+import { actions } from '../../store/location';
 import Icon from '../icon';
 import Product from '../product';
 import styles from './styles';
 
-const SubCategory = ({ classes, title, icon, items, showHeader }) => {
+const SubCategory = ({ classes, title, icon, items, showHeader, link }) => {
   return (
     <section>
       { 
         showHeader && items.size > 0 ? (
           <header className={classes.header}>
             <h2 className={classes.title}>
-              { icon ? <Icon icon={icon} /> : null }
+              { icon ? <Icon className={classes.icon} icon={icon} /> : null }
               <span>{ title }</span>
             </h2>
-            <a className={classes.link} href="#">Ver más</a>
+            <Link
+              to={link}
+              className={classes.link}
+            >
+              { "Ver más" }
+            </Link>
+            
           </header>
         ) : null
       }

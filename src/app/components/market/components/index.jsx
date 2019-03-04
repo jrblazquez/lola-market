@@ -1,28 +1,20 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import Header from '../../../../components/backgroundHeader';
 import Centered from '../../../../components/centered';
 import Subcategory from '../../../../components/subcategory';
-import Icon from '../../../../components/icon';
+import Header from '../../../../components/marketHeader';
+import { actions } from '../../../../store/location';
 import styles from './styles';
 
 const Category = ({ classes, market, openAside, itemsByCategories }) => {
   return (
     <>
-      <Header 
-        image={market.picture}
+      <Header
+        market={market}
         onClick={openAside}
-      >
-        <nav className={classes.headerIcons}>
-          <Icon
-            size="large"
-            icon={market.icon}
-          />
-        </nav>
-        <h1 className={classes.title}>
-          { market.name }
-        </h1>
-      </Header>
+        title={market.name}
+        image={market.picture}
+      />
 
       <Centered
         id="Products"
@@ -37,6 +29,7 @@ const Category = ({ classes, market, openAside, itemsByCategories }) => {
                   icon={category.icon}
                   showHeader={itemsByCategories.size > 1}
                   items={category.items}
+                  link={actions.goMarketCategory({ marketName: market.shortcut, categoryName: category.shortcut })}
                 />
               </article>
             )
