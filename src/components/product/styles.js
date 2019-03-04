@@ -23,6 +23,7 @@ const styles = theme => ({
     height: '8rem',
     margin: 0,
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'center',
     marginBottom: '1rem',
   },

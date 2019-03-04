@@ -26,12 +26,12 @@ const reducer = (state = getInitialState(), action) => {
   switch(action.type){
     case TYPES.GET_ITEMS_SUCCEEDED:
       return state
-        .set('byId', action.payload.items.byId)
-        .set('byFeaturedCategories', action.payload.items.byFeaturedCategories);
+        .set('byId', state.get('byId').merge(action.payload.items.byId))
+        .set('byFeaturedCategories', state.get('byFeaturedCategories').merge(action.payload.items.byFeaturedCategories));
     case TYPES.GET_FEATURED_SUCCEEDED:
         return state
-          .set('byId', action.payload.items.byId)
-          .set('byFeaturedCategories', action.payload.items.byFeaturedCategories);
+          .set('byId', state.get('byId').merge(action.payload.items.byId))
+          .set('byFeaturedCategories', state.get('byFeaturedCategories').merge(action.payload.items.byFeaturedCategories));
     default:
       return state;
   }

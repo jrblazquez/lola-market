@@ -4,112 +4,101 @@ import { actions as categoriesActions, types as categoriesTypes } from '../../..
 import { actions as marketsActions, types as marketsTypes } from '../../../entities/markets';
 import { actions as itemsActions } from '../../../entities/items';
 import * as selectors from '../selectors';
-import { selectors as locationSelectors } from '../../../location';
-import * as Api from '../../../../api';
 import * as TYPES from '../types';
+import { selectors as locationSelectors } from '../../../location';
 
-function* changePostalCode(action) {
-  const { token, postalcode } = action.payload;
-  try {
-    const markets = yield call(Api.getMarkets, { token, postalcode });
-    yield put(marketsActions.getMarketsSucceeded(markets));
-    const marketId = markets.byPostalcode.get(String(postalcode)).first();
-    yield put(actions.changeMarket(marketId));
+function* getMarketID(marketName){
+  const postalcode = yield select(selectors.getPostalCode);
 
-    const categories = yield call(Api.getCategories, { token, marketId });
-    yield put(categoriesActions.getCategoriesSucceeded(categories));
-    //const categoryId = categories.byMarket.get(String(marketId)).first();
-    yield put(actions.changeCategory());
-
-
-  } catch (e) {
-    //yield put(actions.getTokenFailed(e.message));
+  let markets = yield select(selectors.getMarketsByPostalCode);
+  if(markets === null){
+    yield put(marketsActions.getMarketsRequest(postalcode));
+    yield take(marketsTypes.GET_MARKETS_SUCCEEDED);
+    markets = yield select(selectors.getMarketsByPostalCode);
   }
+  const market = markets.find(market => market.shortcut === marketName);
+  return market.id;
 }
 
-function* getItems(action) {
-  const { token, id } = action.payload;
-  try {
-    const marketId = yield select(selectors.getMarketId);
-    const items = yield call(Api.getItems, { token, categoryId: id, marketId });
-    yield put(itemsActions.getItemsSucceeded(items));
-    yield put(actions.closeAside());
+function* selectMarket(){
+  const marketName = yield select(locationSelectors.getMarketName);
+  
+  //SET THE CURRENT MARKET
+  const marketID = yield call(getMarketID, marketName);
+  yield put(actions.setMarket(marketID));
 
-  } catch (e) {
-    //yield put(actions.getTokenFailed(e.message));
+  //SEARCH ALL THE CATEGORIES
+  const categoriesByMarket = yield select(selectors.getAllCategoriesByMarket);
+  if(!categoriesByMarket.get(marketID)){
+    yield put(categoriesActions.getCategoriesRequest(marketID));
+    yield take(categoriesTypes.GET_CATEGORIES_SUCCEEDED);
   }
+
+  return marketID
 }
 
-function* sagas() {
-  yield takeEvery(TYPES.CHANGE_POSTALCODE, changePostalCode);
-  yield takeEvery(TYPES.SELECT_CATEGORY, getItems);
+function* getCategoryID(categoryName){
+  const categories = yield select(selectors.getAllCategoriesById);
+  const category = categories.find(category => category.shortcut === categoryName);
+  return category.id;
+}
+
+function* selectCategory(){
+  const categoryName = yield select(locationSelectors.getCategoryName);
+
+  //SET THE CURRENT CATEGORY
+  const categoryID = yield call(getCategoryID, categoryName);
+  yield put(actions.setCategory(categoryID));
+
+  return categoryID
+}
+
+function* selectSubcategory(){
+  const subcategoryName = yield select(locationSelectors.getSubCategoryName);
+
+  //SET THE CURRENT SUBCATEGORY
+  const subcategoryID = yield call(getCategoryID, subcategoryName);
+  yield put(actions.setSubcategory(subcategoryID));
+
+  return subcategoryID
 }
 
 export function* goMarket(){
-  const postalcode = yield select(selectors.getPostalCode);
-  try {
-    yield put(marketsActions.getMarketsRequest(postalcode));
-    yield take(marketsTypes.GET_MARKETS_SUCCEEDED);
-    const markets = yield select(selectors.getMarketsByPostalCode);
-    const marketName = yield select(locationSelectors.getMarketName);
-    const market = markets.find(market => market.shortcut === marketName);
-    yield put(actions.setMarket(market.id));
-    yield put(categoriesActions.getCategoriesRequest(market.id));
-    yield put(itemsActions.getFeaturedRequest(market.id));
-  } catch (e) {
-    
-  }
+  const marketID = yield call(selectMarket);
+  yield put(itemsActions.getFeaturedRequest(marketID));
+  yield put(actions.closeAside());
 }
 
 export function* goMarketCategory(){
-  const postalcode = yield select(selectors.getPostalCode);
-  try {
-    yield put(marketsActions.getMarketsRequest(postalcode));
-    yield take(marketsTypes.GET_MARKETS_SUCCEEDED);
-    const markets = yield select(selectors.getMarketsByPostalCode);
-    const marketName = yield select(locationSelectors.getMarketName);
-    const market = markets.find(market => market.shortcut === marketName);
-    yield put(actions.setMarket(market.id));
-    
-    yield put(categoriesActions.getCategoriesRequest(market.id));
-    yield take(categoriesTypes.GET_CATEGORIES_SUCCEEDED);
-    const categories = yield select(selectors.getCategoriesById);
-    const categoryName = yield select(locationSelectors.getCategoryName);
-    const category = categories.find(category => category.shortcut === categoryName);
-    yield put(actions.setCategory(category.id));
-
-    yield put(itemsActions.getFeaturedRequest(market.id, category.id));
-  } catch (e) {
-    
-  }
+  const marketID = yield call(selectMarket);
+  const categoryID = yield call(selectCategory);
+  yield put(itemsActions.getFeaturedRequest(marketID, categoryID));
+  yield put(actions.closeAside());
 }
 
 export function* goMarketSubcategory(){
-  const postalcode = yield select(selectors.getPostalCode);
-  try {
-    yield put(marketsActions.getMarketsRequest(postalcode));
-    yield take(marketsTypes.GET_MARKETS_SUCCEEDED);
-    const markets = yield select(selectors.getMarketsByPostalCode);
-    const marketName = yield select(locationSelectors.getMarketName);
-    const market = markets.find(market => market.shortcut === marketName);
-    yield put(actions.setMarket(market.id));
-    
-    yield put(categoriesActions.getCategoriesRequest(market.id));
-    yield take(categoriesTypes.GET_CATEGORIES_SUCCEEDED);
-    const categories = yield select(selectors.getCategoriesById);
-    const categoryName = yield select(locationSelectors.getCategoryName);
-    const subcategoryName = yield select(locationSelectors.getSubCategoryName);
+  const marketID = yield call(selectMarket);
+  const categoryID = yield call(selectCategory);
+  const subcategoryID = yield call(selectSubcategory);
 
-    const category = categories.find(category => category.shortcut === categoryName);
-    const subcategory = categories.find(category => category.shortcut === subcategoryName);
-    console.log(category, subcategory);
-
-    yield put(actions.setCategory(subcategory.id));
-
-    yield put(itemsActions.getItemsRequest(market.id, subcategory.id));
-  } catch (e) {
-    
+  const items = yield select(selectors.getAllItemsIdByFeaturedCategories);
+  if(!items.get(subcategoryID)){
+    yield put(itemsActions.getItemsRequest(marketID, subcategoryID));
   }
+  yield put(actions.closeAside());
+}
+
+function* openAside(){
+  window.document.body.style.overflow='hidden';
+}
+
+function* closeAside(){
+  window.document.body.style.overflow='';
+}
+
+function* sagas() {
+  yield takeEvery(TYPES.OPEN_ASIDE, openAside);
+  yield takeEvery(TYPES.CLOSE_ASIDE, closeAside);
 }
 
 export default sagas;

@@ -11,7 +11,7 @@ const styles = theme => ({
     height: '100%',
     width: '100%',
     opacity: 0,
-    zIndex: 0,
+    zIndex: -1,
     position: 'fixed',
     transition: 'all ease 500ms',
   }

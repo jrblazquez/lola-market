@@ -10,7 +10,6 @@ const routesMap = {
 };
 
 function* goHome () {
-  yield console.log('Just Finished a Super Long API Call')
 }
 
 function* rootSaga () {

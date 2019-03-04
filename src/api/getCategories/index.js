@@ -19,13 +19,14 @@ export default async ({ token, marketId }) => {
       .reduce((categories, category) => {
         const subcategories = category.categories.reduce((categories, category) => categories.set(category.id, new Model(category)), Map());
         return categories
-          .set(category.id, new Model(category))
+          .set(category.id, new Model({
+            ...category,
+            categories: List(category.categories.map(category=>category.id)),
+          }))
           .merge(subcategories);
       }, Map())
   
-    const byMarket = Map({
-      [marketId]: List(categories.map(category => category.id)),
-    });
+    const byMarket = Map().set(marketId, List(categories.map(category => category.id)));
 
     return {
       byId,

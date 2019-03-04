@@ -4,7 +4,7 @@ const styles = theme => ({
   header: {
     display: 'flex',
     alignItems: 'center',
-    margin: '0rem 0.25rem',
+    margin: '1rem 0.25rem',
   },
   title: {
     color: theme.palette.primary,
@@ -24,7 +24,6 @@ const styles = theme => ({
   products: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
   },
   product: {
     display: 'flex',

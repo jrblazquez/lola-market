@@ -8,6 +8,7 @@ const styles = theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
+    marginBottom: '2rem',
   },
   prueba: {
     zIndex: 10,
@@ -19,7 +20,7 @@ const styles = theme => ({
 const App = ({ classes, Component }) => {
   return (
     <div className={classes.container}>
-      {/*<Aside />*/}
+      <Aside />
       <Component />
     </div>
   )

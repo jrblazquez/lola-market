@@ -3,6 +3,7 @@ import { sagas as locationSagas } from '../location';
 import { sagas as marketSagas } from '../../store/entities/markets';
 import { sagas as categoriesSagas } from '../../store/entities/categories';
 import { sagas as itemsSagas }  from '../../store/entities/items';
+import { sagas as shopSagas }  from '../../store/ui/shop';
 import { actions, types as TYPES, sagas as userSagas }  from '../user';
 
 function* initial(initialDispatch){
@@ -18,6 +19,7 @@ function* rootSagas(initialDispatch){
     marketSagas(),
     categoriesSagas(),
     itemsSagas(),
+    shopSagas(),
     initial(initialDispatch),
   ])
 }

@@ -3,27 +3,23 @@ import injectSheet from 'react-jss';
 import Icon from '../icon';
 import styles from './styles';
 
-const BackgroundHeader = ({ classes, image, title, onClick, icon }) => {
+const BackgroundHeader = ({ classes, image, onClick, children }) => {
   return (
     <header
       className={classes.container}
       onClick={onClick}
+      style={{
+        backgroundImage: `url(${image})`,
+      }}
     >
-      <Icon
-        size="large"
-        icon={icon}
-        className={classes.icon}
-      />
-      <h1 className={classes.title}>
-        { title }
-      </h1>
+      { children }
     </header>
   );
 }
 
 BackgroundHeader.defaultProps = {
-  image: 'https://api.comprea.com/bundles/asset/category/bg_header_008.jpg?s=web',
-  title: 'Aceites, salsas y condimentos',
+  image: '',
+  title: '',
 }
 
 export default injectSheet(styles)(BackgroundHeader);

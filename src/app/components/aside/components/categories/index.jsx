@@ -4,38 +4,36 @@ import cs from 'classnames';
 import Category from '../category';
 import styles from './styles';
 
-const Categories = ({ className, classes, categories, expand, collapse, select, categoriesSelected }) => (
+const Categories = ({ className, classes, categories, expand, collapse, select, categoryExpanded, categorySelected }) => (
   <ul className={cs(classes.categories, className)}>
     { 
       categories.map(category => {
+        const hasSubcategories = category.categories.size > 0;
+        const isSelected = (hasSubcategories ? categoryExpanded : categorySelected) === category.id;
+        const onClick = hasSubcategories 
+          ? (isSelected ? () => collapse(category.id) : () => expand(category.id)) 
+          : (isSelected ? () => null : () => select(category.shortcut)) ;
         return (
           <Category
-            icon={category.hasSubcategories ? category.icon : null}
+            icon={hasSubcategories ? category.icon : null}
             id={category.id}
-            isSelected={category.isSelected}
+            isSelected={isSelected}
+            hasSubcategories={hasSubcategories}
             key={category.id}
             name={category.name}
-            parents={category.parents}
-            hasSubcategories={category.hasSubcategories}
-            onClick={
-              category.hasSubcategories
-              ? 
-                category.isSelected
-                ? collapse
-                : expand
-              : select
-            }
+            onClick={onClick}
           >
             { 
-              category.categories ? (
+              hasSubcategories && isSelected ? (
                 <Categories
                   categories={category.categories}
-                  categoriesSelected={categoriesSelected}
                   classes={classes}
                   className={classes.categories}
                   collapse={collapse}
                   expand={expand}
                   select={select}
+                  categoryExpanded={categoryExpanded}
+                  categorySelected={categorySelected}
                 />
               ) : null
             }

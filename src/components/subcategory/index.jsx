@@ -1,19 +1,23 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import Icon from '../../../../../components/icon';
+import Icon from '../icon';
 import Product from '../product';
 import styles from './styles';
 
-const SubCategory = ({ classes, title, icon, items }) => {
+const SubCategory = ({ classes, title, icon, items, showHeader }) => {
   return (
     <section>
-      <header className={classes.header}>
-        <h2 className={classes.title}>
-          <Icon icon={icon} />
-          <span>{title}</span>
-        </h2>
-        <a className={classes.link} href="#">Ver más</a>
-      </header>
+      { 
+        showHeader && items.size > 0 ? (
+          <header className={classes.header}>
+            <h2 className={classes.title}>
+              { icon ? <Icon icon={icon} /> : null }
+              <span>{ title }</span>
+            </h2>
+            <a className={classes.link} href="#">Ver más</a>
+          </header>
+        ) : null
+      }
       <ul className={classes.products}>
         {
           items.map(item => (
@@ -32,8 +36,8 @@ const SubCategory = ({ classes, title, icon, items }) => {
 }
 
 SubCategory.defaultProps = {
-  title: 'Title',
-  icon: 'https://api.comprea.com/bundles/asset/category/ic_category_031.png',
+  title: '',
+  icon: '',
 }
 
 export default injectSheet(styles)(SubCategory);

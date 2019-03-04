@@ -22,32 +22,10 @@ export const collapseCategory = (id) => ({
   }
 });
 
-export const selectCategory = (id, parents) => ({
-  type: TYPES.SELECT_CATEGORY,
+export const changeSubcategory = (shortcut) => ({
+  type: TYPES.CHANGE_SUBCATEGORY,
   payload: {
-    id,
-    parents,
-  }
-});
-
-export const changePostalCode = (postalcode) => ({
-  type: TYPES.CHANGE_POSTALCODE,
-  payload: {
-    postalcode
-  }
-});
-
-export const changeMarket = (marketId) => ({
-  type: TYPES.CHANGE_MARKET,
-  payload: {
-    marketId
-  }
-});
-
-export const changeCategory = (categoryId) => ({
-  type: TYPES.CHANGE_CATEGORY,
-  payload: {
-    categoryId
+    shortcut,
   }
 });
 
@@ -60,6 +38,13 @@ export const setMarket = id => ({
 
 export const setCategory = id => ({
   type: TYPES.SET_CATEGORY,
+  payload: {
+    id
+  }
+});
+
+export const setSubcategory = id => ({
+  type: TYPES.SET_SUBCATEGORY,
   payload: {
     id
   }

@@ -21,10 +21,10 @@ const Product = ({ classes, name, image, price, unit }) => {
 }
 
 Product.defaultProps = {
-  name: 'Aceite oliva sabor suave tapón rojo Hacendado',
-  image: 'https://api.comprea.com/bundles/product/aceite-oliva-sabor-suave-tapon-rojo-de-mercadona.jpg?s=xs',
-  price: '3.59',
-  unit: 'ud.',
+  name: '',
+  image: '',
+  price: '',
+  unit: '',
 }
 
 export default injectSheet(styles)(Product);

@@ -6,11 +6,11 @@ import Subcategory from '../../../../components/subcategory';
 import Icon from '../../../../components/icon';
 import styles from './styles';
 
-const Category = ({ classes, market, openAside, itemsByCategories }) => {
+const Category = ({ classes, market, category, subcategory, openAside, itemsByCategories }) => {
   return (
     <>
       <Header 
-        image={market.picture}
+        image={subcategory.picture}
         onClick={openAside}
       >
         <nav className={classes.headerIcons}>
@@ -18,9 +18,14 @@ const Category = ({ classes, market, openAside, itemsByCategories }) => {
             size="large"
             icon={market.icon}
           />
+          <hr className={classes.headersIconsSeparation} />
+          <Icon
+            size="large"
+            icon={category.icon}
+          />
         </nav>
         <h1 className={classes.title}>
-          { market.name }
+          { subcategory.name }
         </h1>
       </Header>
 

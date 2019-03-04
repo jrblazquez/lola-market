@@ -5,8 +5,9 @@ const Model = Record({
   postalcode: 28010,
   market: null,
   category: null,
-  categories: List(),
+  subcategory: null,
   isAsideOpened: false,
+  categoryExpanded: null,
 });
 
 const reducer = (state = Model(), action) => {
@@ -14,33 +15,19 @@ const reducer = (state = Model(), action) => {
     case TYPES.CLOSE_ASIDE:
       return state.set('isAsideOpened', false);
     case TYPES.OPEN_ASIDE:
-      return state.set('isAsideOpened', true);
+      return state
+        .set('isAsideOpened', true)
+        .set('categoryExpanded', state.get('category'));
     case TYPES.EXPAND_CATEGORY:
-      return state.set('categories', List([action.payload.id]));
+      return state.set('categoryExpanded', action.payload.id);
     case TYPES.COLLAPSE_CATEGORY:
-      return state.set('categories', List());
+      return state.set('categoryExpanded', null);
     case TYPES.SET_MARKET:
-      return state.set('market', action.payload.id)
+      return state.set('market', action.payload.id);
     case TYPES.SET_CATEGORY:
-      return state
-        .set('category', action.payload.id)
-        .set('categories', List([action.payload.id]));
-
-
-        
-    case TYPES.SELECT_CATEGORY:
-      return state
-        .set('category', action.payload.id)
-        .set('categories', List(action.payload.parents));
-    
-    case TYPES.CHANGE_MARKET:
-        return state
-          .set('market', action.payload.marketId);
-    case TYPES.CHANGE_CATEGORY:
-        return state
-          .set('category', action.payload.categoryId)
-          .set('categories', List([action.payload.categoryId]));
-    
+      return state.set('category', action.payload.id);
+    case TYPES.SET_SUBCATEGORY:
+      return state.set('subcategory', action.payload.id);
     default:
     return state;
   }

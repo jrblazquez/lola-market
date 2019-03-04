@@ -16,14 +16,13 @@ class Category extends PureComponent{
       icon,
       children,
       onClick,
-      parents,
       isSelected,
     } = this.props;
     return (
       <li className={classes.container}>
         <div 
           className={classes.section}
-          onClick={() => onClick(id, parents)}
+          onClick={onClick}
         >
           <Icon icon={icon} />
           <span className={classes.name}>
@@ -46,10 +45,6 @@ class Category extends PureComponent{
 };
 
 Category.defaultProps = {
-  icon: null,
-  name: '',
-  isExpanded: false,
-  isSubsection: false,
 }
 
 export default injectSheet(styles)(Category);
