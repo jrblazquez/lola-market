@@ -1,6 +1,6 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import Overlay from '../../../../components/overlay';
+import Overlay from 'components/overlay';
 import Header from './header';
 import Categories from './categories';
 import styles from './styles';

@@ -1,7 +1,7 @@
 import Aside from './components/';
 import { connect } from 'react-redux';
-import { actions as locationActions } from '../../../store/location';
-import { selectors, actions } from '../../../store/ui/shop';
+import { actions as locationActions } from 'store/location';
+import { selectors, actions } from 'store/ui/shop';
 
 const mapStateToProps = state => {
   return {

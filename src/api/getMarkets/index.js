@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import { Model } from '../../store/entities/markets/reducers';
 import { Map, List } from 'immutable';
+import { Model } from 'store/entities/markets/reducers';
 
 export default async ({ token, postalcode }) => {
   const url = `${API_URL}/v6/user/postalcode?token=${token}&postalcode=${postalcode}`;

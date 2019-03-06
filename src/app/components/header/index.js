@@ -1,7 +1,7 @@
-import Header from '../../../components/header';
+import Header from 'components/header';
 import { connect } from 'react-redux';
-import { actions as locationActions } from '../../../store/location';
-import { actions } from '../../../store/ui/shop';
+import { actions as locationActions } from 'store/location';
+import { actions } from 'store/ui/shop';
 
 const mapStateToProps = state => ({
 

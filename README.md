@@ -59,5 +59,4 @@ The CSS theme and the global styles.
 * Create a complete css theme and use all the variables.
 * Create NOT_FOUND page component.
 * Define Error flow in the pages.
-* Use webpack alias
 * Add Lint

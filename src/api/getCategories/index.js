@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import { Model } from '../../store/entities/categories/reducers';
 import { Map, List } from 'immutable';
+import { Model } from 'store/entities/categories/reducers';
 
 export default async ({ token, marketId }) => {
   const url = `${API_URL}/company/categories?token=${token}&company_id=${marketId}`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 import Link from 'redux-first-router-link';
-import { actions } from '../../store/location';
+import { actions } from 'store/location';
 import Icon from '../icon';
 import Product from '../product';
 import styles from './styles';

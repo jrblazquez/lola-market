@@ -1,6 +1,6 @@
 import Market from './components/';
 import { connect } from 'react-redux';
-import { selectors, actions } from '../../../store/ui/shop';
+import { selectors, actions } from 'store/ui/shop';
 
 const mapStateToProps = state => {
   return {

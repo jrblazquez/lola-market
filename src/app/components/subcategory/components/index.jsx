@@ -1,8 +1,8 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import Header from '../../../../components/marketHeader';
-import Centered from '../../../../components/centered';
-import Subcategory from '../../../../components/subcategory';
+import Header from 'components/marketHeader';
+import Centered from 'components/centered';
+import Subcategory from 'components/subcategory';
 import styles from './styles';
 
 const Category = ({ classes, market, category, subcategory, openAside, itemsByCategories }) => {

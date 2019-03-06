@@ -4,7 +4,7 @@ import Link from 'redux-first-router-link';
 import Header from '../backgroundHeader';
 import Icon from '../icon';
 import styles from './styles';
-import { actions } from '../../store/location';
+import { actions } from 'store/location';
 
 const MarketHeader = ({ classes, market, category, onClick, title, image }) => (
   <Header 

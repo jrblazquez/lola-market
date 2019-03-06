@@ -1,6 +1,6 @@
 
 import { connect } from 'react-redux';
-import { types as TYPES } from '../store/location';
+import { types as TYPES } from 'store/location';
 import {NOT_FOUND} from 'redux-first-router';
 import App from './components';
 import Market from './components/market';
