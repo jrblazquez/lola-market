@@ -1,8 +1,10 @@
 const path = require('path');
+const webpack = require('webpack');
+require('dotenv').config();
 
 module.exports = {
   entry: './src/index.js',
-  mode: 'development',
+  mode: process.env.MODE || 'development',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
@@ -21,8 +23,13 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new webpack.DefinePlugin({ 
+      API_URL: JSON.stringify(process.env.API_URL) 
+    })
+  ],
   devServer: {
-    port: 3001,
+    port: process.env.PORT || 3000,
     historyApiFallback: true,
   },
 };

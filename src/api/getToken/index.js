@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch';
 import mocks from '../../../servers/mocks/token.json';
-const API_URL =  'https://api.comprea.com';
 
 export default async () => {
   const url = `${API_URL}/user/session`;

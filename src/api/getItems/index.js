@@ -1,7 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { Model } from '../../store/entities/items/reducers';
 import { Map, List } from 'immutable';
-const API_URL =  'https://api.comprea.com';
 
 export default async ({ token, marketId, categoryId }) => {
   const url = `${API_URL}/v6/company/items?token=${token}&company_id=${marketId}&category_id=${categoryId}&offset=0&limit=100`;

@@ -1,6 +1,6 @@
 {
   "name": "lola-market",
-  "description": "",
+  "description": "Lola Market Frontend Test",
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/jrblazquez/lola-market.git"
   },
-  "author": "",
+  "author": "Javier R. Blázquez",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jrblazquez/lola-market/issues"
@@ -26,7 +26,7 @@
     "classnames": "^2.2.6",
     "immutable": "^4.0.0-rc.12",
     "isomorphic-fetch": "^2.2.1",
-    "jss-preset-default": "^10.0.0-alpha.7",
+    "jss-preset-default": "^4.5.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-jss": "^8.6.1",
@@ -40,6 +40,7 @@
     "webpack": "^4.29.5"
   },
   "devDependencies": {
+    "dotenv": "^6.2.0",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
   }
